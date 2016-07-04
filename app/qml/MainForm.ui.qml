@@ -9,14 +9,100 @@ Item {
 
 
     Item {
-        id: main_controls
-        x: 0
-        anchors.bottomMargin: 0
-        anchors.top: parent.top
+        id: seekControls
+        height: 147
         anchors.right: parent.right
-        anchors.bottom: advanced_controls.top
+        anchors.rightMargin: 0
         anchors.left: parent.left
-        anchors.topMargin: 240
+        anchors.leftMargin: 0
+        anchors.top: statusText.bottom
+        anchors.topMargin: 16
+
+        Slider {
+            id: sliderHorizontal1
+            x: 198
+            y: -290
+            anchors.right: timeLeftText.left
+            anchors.rightMargin: 16
+            anchors.left: durationText.right
+            anchors.leftMargin: 16
+            anchors.bottom: muteButton.top
+            anchors.bottomMargin: 32
+            anchors.top: parent.top
+            anchors.topMargin: 16
+        }
+
+        Text {
+            id: timeLeftText
+            x: 618
+            y: -290
+            width: 150
+            color: "#808080"
+            text: qsTr("-0:00:00")
+            anchors.right: parent.right
+            anchors.rightMargin: 32
+            font.pixelSize: 28
+            anchors.topMargin: 16
+            anchors.top: parent.top
+            horizontalAlignment: Text.AlignRight
+        }
+
+        Text {
+            id: durationText
+            x: 32
+            y: -290
+            width: 150
+            color: "#808080"
+            text: qsTr("0:00:00")
+            anchors.left: parent.left
+            anchors.leftMargin: 32
+            anchors.top: parent.top
+            anchors.topMargin: 16
+            font.pixelSize: 28
+            horizontalAlignment: Text.AlignLeft
+        }
+
+        Button {
+            id: playlistButton
+            x: 618
+            y: -225
+            width: 150
+            height: 50
+            text: qsTr("SHOW PLAYLIST")
+            anchors.right: parent.right
+            anchors.rightMargin: 32
+            anchors.top: timeLeftText.bottom
+            anchors.topMargin: 32
+        }
+
+        Button {
+            id: muteButton
+            x: 32
+            y: -225
+            width: 150
+            height: 50
+            text: qsTr("MUTE")
+            anchors.top: durationText.bottom
+            anchors.topMargin: 32
+            anchors.left: parent.left
+            anchors.leftMargin: 32
+        }
+
+
+
+
+    }
+
+    Item {
+        id: main_controls
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
+        anchors.top: seekControls.bottom
+        anchors.topMargin: 0
 
         Image {
             id: volumeUp
@@ -25,7 +111,7 @@ Item {
             height: 100
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: 32
+            anchors.topMargin: 16
             source: "rcs/volume_up.svg"
         }
 
@@ -65,6 +151,7 @@ Item {
             source: "rcs/previous.svg"
         }
 
+
         Text {
             id: centerText
             x: 350
@@ -81,7 +168,9 @@ Item {
             font.pixelSize: 40
         }
 
+
     }
+
 
 
 
@@ -100,32 +189,7 @@ Item {
     }
 
 
-    Button {
-        id: muteButton
-        x: 32
-        y: 161
-        width: 150
-        height: 50
-        text: qsTr("MUTE")
-        anchors.top: statusText.bottom
-        anchors.topMargin: 32
-        anchors.left: parent.left
-        anchors.leftMargin: 32
-    }
 
-
-    Button {
-        id: playlistButton
-        x: 618
-        y: 161
-        width: 150
-        height: 50
-        text: qsTr("SHOW PLAYLIST")
-        anchors.right: parent.right
-        anchors.rightMargin: 32
-        anchors.top: statusText.bottom
-        anchors.topMargin: 32
-    }
 
 
     Text {
@@ -141,6 +205,7 @@ Item {
         anchors.topMargin: 0
         font.pixelSize: 28
     }
+
 
 
     Text {
@@ -160,24 +225,4 @@ Item {
 
 
 
-    Item {
-        id: advanced_controls
-        height: 150
-        anchors.right: parent.right
-        anchors.rightMargin: 0
-        anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
-
-        Text {
-            id: text1
-            color: "#808080"
-            text: qsTr("ADVANCED")
-            anchors.fill: parent
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 48
-        }
-    }
 }
