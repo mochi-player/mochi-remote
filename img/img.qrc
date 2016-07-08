@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>connect.svg</file>
+        <file>next.svg</file>
+        <file>previous.svg</file>
+        <file>volume_down.svg</file>
+        <file>volume_up.svg</file>
+    </qresource>
+</RCC>

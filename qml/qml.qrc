@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>component/MochiApplication.qml</file>
+        <file>component/MochiController.qml</file>
+        <file>component/MochiGestures.qml</file>
+        <file>component/MochiPlaylist.qml</file>
+        <file>component/MochiRemoteList.qml</file>
+        <file>widget/MochiWidget.qml</file>
+        <file>widget/MochiButton.qml</file>
+    </qresource>
+</RCC>

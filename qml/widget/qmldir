@@ -1,0 +1,4 @@
+module MochiWidget
+singleton Style 1.0 MochiStyle.qml
+Widget 1.0 MochiWidget.qml
+Button 1.0 MochiButton.qml
