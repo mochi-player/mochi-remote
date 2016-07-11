@@ -1,5 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
+
+#include "application.h"
+#include "input.h"
+#include "remote.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,8 +13,12 @@ int main(int argc, char *argv[])
 
   QGuiApplication app(argc, argv);
 
+  qmlRegisterType<Application>("Mochi", 1, 0, "Application");
+  qmlRegisterType<Input>("Mochi", 1, 0, "Input");
+  qmlRegisterType<Remote>("Mochi", 1, 0, "Remote");
+
   QQmlApplicationEngine engine;
-  engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+  engine.load(QUrl(QStringLiteral("qrc:/component/MochiApplication.qml")));
 
   return app.exec();
 }

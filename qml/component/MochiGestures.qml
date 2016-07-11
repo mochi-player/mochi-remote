@@ -1,60 +1,77 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
+import Mochi 1.0 as Mochi
+import "../widget"
 
 Item {
   ColumnLayout {
     anchors.fill: parent
-    Layout.alignment: Qt.AlignCenter
+
     Image {
-      source: ":/volune_increase.svg"
+      source: "qrc:/volume_up.svg"
+      Layout.alignment: Qt.AlignCenter
     }
     Image {
-      source: ":/lines.svg"
-      Layout.fillHeight: true 
+      Layout.fillHeight: true
+      Layout.alignment: Qt.AlignCenter
+      source: "qrc:/vline.svg"
     }
+    Item { height: MochiStyle.margin }
     RowLayout {
       Layout.fillWidth: true
-      Layout.alignment: Qt.AlignCenter | Qt.VAlignMiddle
 
+      Item { width: MochiStyle.margin }
       Image {
-        source: ":/back.svg"
+        Layout.alignment: Qt.AlignVCenter
+        source: "qrc:/previous.svg"
       }
       Image {
-        source: ":/lines.svg"
-        rotation: -90
         Layout.fillWidth: true
+        Layout.alignment: Qt.AlignVCenter
+        source: "qrc:/hline.svg"
       }
-      Text {
-        text: remote.paused ? "Tap to Play" : "Tap to Pause"
+      Item { width: MochiStyle.margin }
+      MochiText {
+        id: playButton
+        Layout.alignment: Qt.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        size: 2.0
+        text: remote.paused ? qsTr("Tap to<br>Play") : qsTr("Tap to<br>Pause")
       }
+      Item { width: MochiStyle.margin }
       Image {
-        source: ":/lines.svg"
-        roation: 90
         Layout.fillWidth: true
+        source: "qrc:/hline.svg"
+        rotation: 180
       }
       Image {
-        source: ":/forward.svg"
+        source: "qrc:/next.svg"
       }
+      Item { width: MochiStyle.margin }
     }
+    Item { height: MochiStyle.margin }
     Image {
-      source: ":/lines.svg"
-      rotation: 180
       Layout.fillHeight: true
+      Layout.alignment: Qt.AlignCenter
+      source: "qrc:/vline.svg"
+      rotation: 180
     }
     Image {
-      source: ":/volume_down.svg"
+      Layout.alignment: Qt.AlignCenter
+      source: "qrc:/volume_down.svg"
     }
+    Item { height: MochiStyle.margin }
   }
+
   Mochi.Input {
-    anchors.fill: parent 
+    id: input
+    anchors.fill: parent
+    gestures: true
     mouse: {
-      "HDrag": function(d) {
-        remote.time = d;
-      },
-      "VDrag": function(d) {
-        remote.volume = d;
-      },
-      "Click": remote.paused^=true
+      "HDrag": "function(d) { console.log('remote.time = d;'); }",
+      "VDrag": "function(d) { console.log('remote.volume = d;'); }",
+      "Click": "console.log('remote.paused^=true')"
     }
+    Component.onCompleted: input.attach(this);
   }
 }

@@ -1,7 +1,9 @@
 import QtQuick 2.6
 
-Image {
+MochiText {
   signal clicked
+
+  font.weight: Font.Bold
 
   MouseArea {
     anchors.fill: parent

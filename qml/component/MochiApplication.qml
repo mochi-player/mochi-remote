@@ -1,69 +1,52 @@
 import QtQuick 2.6
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.3
+import Mochi 1.0 as Mochi
+import "../widget/"
 
-ApplicationWindow {
-  property string connected
+Mochi.Application {
+  id: app
 
-    Item {
-      ColumnLayout {
-        RowLayout {
-          Layout.fillWidth: true
-          height: powerButton.height
+  version: "1.0.0"
+  debug: true
+  init: ""
 
-          MochiButton {
-            id: powerButton
-            enabledIcon: "power.svg"
-          }
-          Item { Layout.fillWidth: true }
-          MochiWidget {
-            Layout.fillHeight: true
-            Layout.alignment: Qt.VAlignMiddle | Qt.AlignRight
-            Text {
-    //          size: 100%
-              text: "mochi-mote"
-            }
-            Text {
-              id: status
-    //          size: 50%
-              text: connected ? "Connected to %0".arg(connected) : "Select a PC to Connect"
-            }
-          }
-        }
-        MochiController {
-          id: controller
-          Layout.fillWidth: true
-          Layout.fillHeight: true
-        }
-        MochiRemoteList {
-          id: remotes
-          Layout.fillWidth: true
-          Layout.fillHeight: true
-        }
-      }
-      states: [
-        State {
-          when: connected
-          PropertyChanges {
-            target: remotes
-            visible: false
-          }
-          PropertyChanges {
-            target: controller
-            visible: true
-          }
-        },
-        State {
-          when: !connected
-          PropertyChanges {
-            target: remotes
-            visible: true
-          }
-          PropertyChanges {
-            target: controller
-            visible: false
-          }
-        }
-      ]
-    }
+  MochiWindow {
+    id: window
+    visible: true
+  }
+
+  Mochi.Remote {
+    id: remote
+    port: 8474
+    muted: false
+    paused: true
+  }
+
+  function quit() {
+//    config.save();
+    Qt.quit();
+  }
+
+  Component.onCompleted: {
+    // Attach QML's JSEngine to Application
+    app.attach(this);
+
+    // Expose objects to JSEngine
+    [window, remote, app].map(function(obj) {
+      app.addObject(obj);
+    });
+
+    // Expose functions to JSEngine
+    app.addFunction("quit", quit);
+
+    // Load in user configuration or write one
+//  if(!config.load())
+//    config.save();
+
+    // Call user init script
+    evaluate(app.init);
+
+    // TODO: remote init
+  }
 }

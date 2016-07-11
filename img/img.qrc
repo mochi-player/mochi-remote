@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/">
+        <file>circle.svg</file>
         <file>connect.svg</file>
+        <file>hline.svg</file>
         <file>next.svg</file>
         <file>previous.svg</file>
+        <file>triangle.svg</file>
+        <file>vline.svg</file>
         <file>volume_down.svg</file>
         <file>volume_up.svg</file>
     </qresource>
