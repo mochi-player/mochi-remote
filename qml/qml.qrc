@@ -13,7 +13,6 @@
     <file>widget/MochiStyle.qml</file>
     <file>widget/MochiText.qml</file>
     <file>widget/MochiTextButton.qml</file>
-    <file>widget/MochiTriangle.qml</file>
     <file>widget/qmldir</file>
   </qresource>
 </RCC>
