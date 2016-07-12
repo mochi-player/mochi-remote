@@ -4,10 +4,14 @@ MochiText {
   signal clicked
 
   font.weight: Font.Bold
+  font.capitalization: Font.AllUppercase
 
   MouseArea {
     anchors.fill: parent
     cursorShape: Qt.PointingHandCursor
-    onClicked: function (event) { parent.clicked(event); }
+
+    Component.onCompleted: {
+      clicked.connect(parent.clicked);
+    }
   }
 }

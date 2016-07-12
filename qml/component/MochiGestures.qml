@@ -16,11 +16,11 @@ Item {
       Layout.alignment: Qt.AlignCenter
       source: "qrc:/vline.svg"
     }
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
     RowLayout {
       Layout.fillWidth: true
 
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       Image {
         Layout.alignment: Qt.AlignVCenter
         source: "qrc:/previous.svg"
@@ -30,15 +30,16 @@ Item {
         Layout.alignment: Qt.AlignVCenter
         source: "qrc:/hline.svg"
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       MochiText {
         id: playButton
         Layout.alignment: Qt.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        size: 2.0
         text: remote.paused ? qsTr("Tap to<br>Play") : qsTr("Tap to<br>Pause")
+        size: 1.5
+        font.capitalization: Font.AllUppercase
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       Image {
         Layout.fillWidth: true
         source: "qrc:/hline.svg"
@@ -47,9 +48,9 @@ Item {
       Image {
         source: "qrc:/next.svg"
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
     }
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
     Image {
       Layout.fillHeight: true
       Layout.alignment: Qt.AlignCenter
@@ -60,7 +61,7 @@ Item {
       Layout.alignment: Qt.AlignCenter
       source: "qrc:/volume_down.svg"
     }
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
   }
 
   Mochi.Input {
@@ -68,9 +69,9 @@ Item {
     anchors.fill: parent
     gestures: true
     mouse: {
-      "HDrag": "function(d) { console.log('remote.time = d;'); }",
-      "VDrag": "function(d) { console.log('remote.volume = d;'); }",
-      "Click": "console.log('remote.paused^=true')"
+      "HDrag": "function(d) { remote.time = d; }",
+      "VDrag": "function(d) { remote.volume = d; }",
+      "Click": "remote.paused^=true"
     }
     Component.onCompleted: input.attach(this);
   }

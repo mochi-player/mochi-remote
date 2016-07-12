@@ -8,33 +8,33 @@ Item {
   ColumnLayout {
     anchors.fill: parent
 
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
     RowLayout {
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignVCenter
 
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       MochiText {
         id: elapsed
         text: "0:00"
       }
-      Item { width: MochiStyle.margin }
-      MochiSeekbar {
+      Item { width: MochiStyle.spacing.margin }
+      MochiSlider {
         id: seekbar
         Layout.fillWidth: true
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       MochiText {
         id: remaining
         text: "-0:00"
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
     }
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
     RowLayout {
       Layout.fillWidth: true
 
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       MochiTextButton {
         id: muteButton
         text: remote.muted ? "Mute" : "Unmute"
@@ -51,9 +51,9 @@ Item {
             controller.state = "playlist";
         }
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
     }
-    Item { height: MochiStyle.margin }
+    Item { height: MochiStyle.spacing.margin }
 
     StackView {
       id: stack

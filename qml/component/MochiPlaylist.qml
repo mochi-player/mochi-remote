@@ -2,23 +2,21 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import "../widget"
 
-MochiRectangle {
-  color: MochiStyle.playlistBackground
+Rectangle {
+  color: MochiStyle.playlist.background
 
   MochiBorder {
     id: topBorder
     type: MochiStyle.top
-    accent: true
     MochiText {
       anchors.centerIn: parent
-      accent: true
+      color: MochiStyle.text.accent
       text: "%0 / %1".arg(list.currentIndex).arg(list.count);
     }
   }
   MochiBorder {
     id: bottomBorder
     type: MochiStyle.bottom
-    accent: true
   }
   ListView {
     id: list
@@ -34,18 +32,17 @@ MochiRectangle {
         title: "test.mkv"
       }
     }
-    delegate: MochiRectangle {
+    delegate: Rectangle {
       anchors.left: parent.left
       anchors.right: parent.right
-      height: label.height + MochiStyle.margin*2
-      color: MochiStyle.playlistBackground
+      height: label.height + MochiStyle.spacing.margin*2
+      color: MochiStyle.playlist.background
 
       MochiText {
         id: label
-        x: MochiStyle.margin
-        y: MochiStyle.margin
+        x: MochiStyle.spacing.margin
+        y: MochiStyle.spacing.margin
         text: title
-        font.capitalization: Font.Normal
         font.weight: remote.title == title ? Font.Bold : Font.Normal;
       }
 
@@ -54,8 +51,10 @@ MochiRectangle {
         size: 1
       }
     }
-    highlight: MochiRectangle {
+    highlight: Rectangle {
+      opacity: 0
       anchors.fill: list.currentItem
+      border.color: MochiStyle.background.accent
       border.width: 5
     }
   }

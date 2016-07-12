@@ -2,43 +2,41 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import "../widget"
 
-MochiRectangle {
+Rectangle {
+  color: MochiStyle.background.normal
+
   MochiBorder {
     id: leftBorder
     type: MochiStyle.left
-    accent: true
   }
   MochiBorder {
     id: rightBorder
     type: MochiStyle.right
-    accent: true
   }
   MochiBorder {
     id: topBorder
     type: MochiStyle.top
-    accent: true
     RowLayout {
       anchors.fill: parent
 
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
       MochiTextButton {
         text: qsTr("Refresh")
-        accent: true
+        color: MochiStyle.text.accent
         size: 1.5
       }
       Item { Layout.fillWidth: true }
       MochiTextButton {
         text: qsTr("Cancel")
-        accent: true
+        color: MochiStyle.text.accent
         size: 1.5
       }
-      Item { width: MochiStyle.margin }
+      Item { width: MochiStyle.spacing.margin }
     }
   }
   MochiBorder {
     id: bottomBorder
     type: MochiStyle.bottom
-    accent: true
   }
   ListView {
     id: list
@@ -53,15 +51,16 @@ MochiRectangle {
         host: "test"
       }
     }
-    delegate: MochiRectangle {
+    delegate: Rectangle {
       anchors.left: parent.left
       anchors.right: parent.right
+      color: MochiStyle.background.normal
       height: label.height + MochiStyle.margin*2
 
       MochiText {
         id: label
-        x: MochiStyle.margin
-        y: MochiStyle.margin
+        x: MochiStyle.spacing.margin
+        y: MochiStyle.spacing.margin
         text: host
       }
     }
@@ -76,8 +75,8 @@ MochiRectangle {
         size: 5
       }
       MochiTextButton {
-        x: list.currentItem.width - 10 - width
-        y: list.currentItem.height - 10 - height
+        x: parent.width - width - MochiStyle.spacing.margin
+        y: parent.height - height - MochiStyle.spacing.margin
         text: qsTr("Connect")
       }
     }

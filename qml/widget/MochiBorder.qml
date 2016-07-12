@@ -1,16 +1,18 @@
 import QtQuick 2.0
 import "."
 
-MochiRectangle {
+Rectangle {
   property int type
   property int size: {
     if(type == MochiStyle.top)
-      return MochiStyle.topWidth
+      return MochiStyle.spacing.top
     else if(type == MochiStyle.bottom)
-      return MochiStyle.bottomWidth
+      return MochiStyle.spacing.bottom
     else
-      return MochiStyle.sideWidth
+      return MochiStyle.spacing.side
   }
+
+  color: MochiStyle.background.accent
 
   function _in(v, a) {
     return (a.indexOf(v) != -1);

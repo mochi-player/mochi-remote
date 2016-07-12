@@ -10,17 +10,18 @@ ApplicationWindow {
   width: 400
   height: 600
 
-  MochiRectangle {
+  Rectangle {
     anchors.fill: parent
+    color: MochiStyle.background.normal
 
     ColumnLayout {
       anchors.fill: parent
-      spacing: MochiStyle.margin
+      spacing: MochiStyle.spacing.margin
 
       RowLayout {
         Layout.fillWidth: true
 
-        Item { width: MochiStyle.margin }
+        Item { width: MochiStyle.spacing.margin }
         MochiButton {
           id: powerButton
           source: "qrc:/connect.svg"
@@ -39,17 +40,17 @@ ApplicationWindow {
           MochiText {
             text: qsTr("mochi-remote")
             size: 2.0
-            font.capitalization: Font.AllLowercase
             Layout.alignment: Qt.AlignRight
           }
           MochiText {
             id: status
             Layout.alignment: Qt.AlignRight
             text: (remote.host == "") ? qsTr("Select a PC to Connect") : qsTr("Connected to %0").arg(remote.host)
-            color: MochiStyle.softText
+            color: MochiStyle.text.soft
+            font.capitalization: Font.AllUppercase
           }
         }
-        Item { width: MochiStyle.margin }
+        Item { width: MochiStyle.spacing.margin }
       }
 
       StackView {

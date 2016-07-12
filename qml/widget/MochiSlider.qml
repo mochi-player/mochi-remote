@@ -1,26 +1,24 @@
 import QtQuick 2.0
+import "."
 
 Item {
-  id: obj
-
   property double pos: 0.35
-
+  width: 100
   height: 15
 
-  MochiRectangle {
+  Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
-    accent: true
+    color: MochiStyle.background.accent
     x: 0
-    y: obj.height/2 - height/2
+    y: parent.height/2 - height/2
     height: 2
   }
 
   Image {
-    anchors.verticalCenter: parent
     source: "qrc:/circle.svg"
-    x: (pos * obj.width) - width/2
-    y: obj.height/2 - height/2
+    x: (pos * parent.width) - width/2
+    y: parent.height/2 - height/2
     height: 10
     width: 10
   }
@@ -30,7 +28,7 @@ Item {
 
     Component.onCompleted: {
       var update = function(event) {
-        pos = Math.max(0.0, Math.min(1.0, event.x / obj.width));
+        pos = Math.max(0.0, Math.min(1.0, event.x / parent.width));
         event.accept = true;
       };
       positionChanged.connect(update);
